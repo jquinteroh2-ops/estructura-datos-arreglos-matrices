@@ -6,10 +6,12 @@ Python no tiene un arreglo de tamaño fijo como tipo básico: se usa la lista
 enteros y se respeta ese tamaño en todas las operaciones.
 
 Ejecución:
-    python python/arreglos.py
+    python python/arreglos.py        # busca un valor existente y uno inexistente
+    python python/arreglos.py 42     # además busca el valor 42
 """
 
 import random
+import sys
 
 TAMANO = 10
 VALOR_MINIMO = 1
@@ -66,6 +68,23 @@ def multiplicar_por_indice(arreglo: list[int]) -> None:
         arreglo[i] *= i
 
 
+# 4. Búsqueda
+def busqueda_lineal(arreglo: list[int], objetivo: int) -> int:
+    """Devuelve el índice de la primera aparición de `objetivo`, o -1 si no está."""
+    for i in range(len(arreglo)):
+        if arreglo[i] == objetivo:
+            return i
+    return -1
+
+
+def mostrar_busqueda(arreglo: list[int], objetivo: int) -> None:
+    indice = busqueda_lineal(arreglo, objetivo)
+    if indice != -1:
+        print(f"  El valor {objetivo} está en la posición {indice}.")
+    else:
+        print(f"  El valor {objetivo} no se encuentra en el arreglo.")
+
+
 def main() -> None:
     print("=== ARREGLOS EN PYTHON ===")
 
@@ -90,6 +109,17 @@ def main() -> None:
     por_indice = arreglo.copy()
     multiplicar_por_indice(por_indice)
     print(f"  b) Multiplicado por su índice: {por_indice}")
+
+    print(f"\n4. Búsqueda lineal en {arreglo}")
+    # Un valor que sí existe (tomado del arreglo) y uno que no (fuera del rango).
+    mostrar_busqueda(arreglo, random.choice(arreglo))
+    mostrar_busqueda(arreglo, VALOR_MINIMO - 1)
+    # Valor dado por el usuario: python python/arreglos.py 42
+    if len(sys.argv) > 1:
+        try:
+            mostrar_busqueda(arreglo, int(sys.argv[1]))
+        except ValueError:
+            print(f"  '{sys.argv[1]}' no es un número entero válido.")
 
 
 if __name__ == "__main__":
