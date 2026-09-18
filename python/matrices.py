@@ -50,6 +50,17 @@ def recorrer_por_columnas(matriz: list[list[int]]) -> None:
         print(linea)
 
 
+# 3. Operaciones
+def sumar_elementos(matriz: list[list[int]]) -> int:
+    """Suma todos los elementos de la matriz."""
+    # Forma idiomática equivalente: sum(sum(fila) for fila in matriz)
+    total = 0
+    for fila in matriz:
+        for valor in fila:
+            total += valor
+    return total
+
+
 def main() -> None:
     print("=== MATRICES EN PYTHON ===")
 
@@ -62,6 +73,9 @@ def main() -> None:
     imprimir_tabla(matriz)
     print("  b) Por columnas:")
     recorrer_por_columnas(matriz)
+
+    print("\n3. Operaciones")
+    print(f"  a) Suma de todos los elementos: {sumar_elementos(matriz)}")
 
 
 if __name__ == "__main__":
