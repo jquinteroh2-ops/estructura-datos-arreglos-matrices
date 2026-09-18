@@ -41,6 +41,15 @@ def imprimir_tabla(matriz: list[list[int]]) -> None:
         print(separador)
 
 
+def recorrer_por_columnas(matriz: list[list[int]]) -> None:
+    """Recorre la matriz columna por columna: el bucle externo va sobre columnas."""
+    for j in range(len(matriz[0])):           # columnas
+        linea = f"    Columna {j}:"
+        for i in range(len(matriz)):          # filas de la columna j
+            linea += f" {matriz[i][j]}"
+        print(linea)
+
+
 def main() -> None:
     print("=== MATRICES EN PYTHON ===")
 
@@ -51,6 +60,8 @@ def main() -> None:
     print("\n2. Recorrido")
     print("  a) En forma de tabla (por filas):")
     imprimir_tabla(matriz)
+    print("  b) Por columnas:")
+    recorrer_por_columnas(matriz)
 
 
 if __name__ == "__main__":
