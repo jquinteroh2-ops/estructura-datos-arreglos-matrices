@@ -50,6 +50,22 @@ def imprimir_con_enumerate(arreglo: list[int]) -> None:
         print(f"    [{indice}] -> {valor}")
 
 
+# 3. Modificación
+# Para modificar se recorre por índice: en un for-each, `valor = 0` solo
+# cambia la variable local del bucle, no la posición del arreglo.
+def impares_a_cero(arreglo: list[int]) -> None:
+    """Reemplaza por 0 cada valor impar (modifica el arreglo recibido)."""
+    for i in range(len(arreglo)):
+        if arreglo[i] % 2 != 0:
+            arreglo[i] = 0
+
+
+def multiplicar_por_indice(arreglo: list[int]) -> None:
+    """Multiplica cada valor por su índice (modifica el arreglo recibido)."""
+    for i in range(len(arreglo)):
+        arreglo[i] *= i
+
+
 def main() -> None:
     print("=== ARREGLOS EN PYTHON ===")
 
@@ -64,6 +80,16 @@ def main() -> None:
     imprimir_con_for_each(arreglo)
     print("  c) Con for-each + índice (enumerate):")
     imprimir_con_enumerate(arreglo)
+
+    print("\n3. Modificación (cada operación sobre una copia del original)")
+    # Las listas se pasan por referencia: sin .copy() se alteraría `arreglo`.
+    impares = arreglo.copy()
+    impares_a_cero(impares)
+    print(f"  Original:                      {arreglo}")
+    print(f"  a) Impares cambiados por 0:    {impares}")
+    por_indice = arreglo.copy()
+    multiplicar_por_indice(por_indice)
+    print(f"  b) Multiplicado por su índice: {por_indice}")
 
 
 if __name__ == "__main__":
