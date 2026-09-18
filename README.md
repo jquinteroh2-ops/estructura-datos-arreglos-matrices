@@ -21,6 +21,7 @@ No requiere instalar dependencias.
 ```bash
 node js-ts/arreglos.js           # arreglos: busca un valor existente y uno inexistente
 node js-ts/arreglos.js 42        # arreglos: además busca el valor 42
+node js-ts/matrices.js           # matrices 3x3
 ```
 
 ## Estructura de carpetas

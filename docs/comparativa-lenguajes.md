@@ -122,3 +122,64 @@ en JavaScript.
 - **Intercambio de filas:** la asignación múltiple `matriz[0], matriz[-1] = matriz[-1], matriz[0]`
   intercambia sin variable temporal. Solo se intercambian las **referencias** a las filas,
   no se copian sus elementos. `matriz[-1]` accede a la última fila sin calcular el índice.
+
+### 2.2 JavaScript (`js-ts/matrices.js`)
+
+- **Representación:** tampoco hay un tipo matriz nativo; se usa un **arreglo de arreglos**.
+- **Declaración e inicialización:**
+  ```js
+  const matriz = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];                        // literal
+  const matriz = Array.from({ length: 3 }, () => new Array(3).fill(0));  // 3x3 en ceros
+  ```
+  **Trampa común (la misma que en Python):** `new Array(3).fill(new Array(3).fill(0))`
+  rellena con **el mismo** arreglo en las tres filas. `Array.from` con una función crea
+  una fila nueva en cada llamada.
+- **Acceso:** `matriz[i][j]`. Dimensiones: `matriz.length` filas y `matriz[0].length` columnas.
+- **Recorrido por filas y por columnas:** igual que en Python, con dos `for` anidados
+  (en el recorrido por columnas el bucle externo va sobre `j`). También sirve
+  `for (const fila of matriz) for (const valor of fila)`.
+- **Formato de tabla:** `String(valor).padStart(2)` alinea los números a la derecha
+  (en Python: `f"{valor:2d}"`). `"----+".repeat(3)` equivale a `"----+" * 3` en Python.
+- **Suma:** con bucles anidados, o `matriz.flat().reduce((a, b) => a + b, 0)`.
+- **Intercambio de filas:** desestructuración `[m[0], m[u]] = [m[u], m[0]]`. Como `m[-1]`
+  no funciona con `[]`, el índice de la última fila se calcula con `matriz.length - 1`.
+- **Impresión:** `console.log(matriz)` muestra la estructura, pero con un formato distinto
+  al de Python. Por eso el programa usa una función `formatear` para que las dos versiones
+  impriman lo mismo.
+
+### 2.3 Diferencias clave en matrices
+
+| Aspecto | Python | JavaScript |
+|---|---|---|
+| Representación | Lista de listas | Arreglo de arreglos |
+| Literal 3x3 | `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]` | `[[1, 2, 3], [4, 5, 6], [7, 8, 9]]` (idéntico) |
+| Crear 3x3 en ceros (correcto) | `[[0] * 3 for _ in range(3)]` | `Array.from({ length: 3 }, () => new Array(3).fill(0))` |
+| Forma incorrecta (filas compartidas) | `[[0] * 3] * 3` | `new Array(3).fill(new Array(3).fill(0))` |
+| Acceso | `matriz[i][j]` | `matriz[i][j]` |
+| Número de filas / columnas | `len(matriz)` / `len(matriz[0])` | `matriz.length` / `matriz[0].length` |
+| Alinear número en texto | `f"{v:2d}"` | `String(v).padStart(2)` |
+| Repetir texto | `"----+" * 3` | `"----+".repeat(3)` |
+| Suma en una línea | `sum(sum(f) for f in matriz)` | `matriz.flat().reduce((a, b) => a + b, 0)` |
+| Intercambiar filas | `m[0], m[-1] = m[-1], m[0]` | `[m[0], m[u]] = [m[u], m[0]]` |
+| Última fila | `matriz[-1]` | `matriz[matriz.length - 1]` o `matriz.at(-1)` |
+| Librería numérica habitual | NumPy | (no hay una estándar; se usan *typed arrays* o librerías externas) |
+
+**Conclusión del bloque:** las matrices se construyen igual en los dos lenguajes (una
+colección de filas), y los algoritmos de recorrido con bucles anidados son prácticamente
+idénticos. Las diferencias están en las facilidades del lenguaje: Python tiene índices
+negativos, asignación múltiple y formato con f-strings. JavaScript usa métodos de `Array`
+(`from`, `fill`, `flat`, `reduce`) y desestructuración.
+
+---
+
+## 3. Resumen general
+
+| Tema | Python | JavaScript |
+|---|---|---|
+| Tipado | Dinámico y fuerte | Dinámico y débil |
+| Tamaño de los arreglos | Dinámico | Dinámico |
+| Declaración de variables | Sin palabra clave (`x = 1`) | `const` / `let` (`var` en código antiguo) |
+| Delimitación de bloques | Indentación obligatoria | Llaves `{ }` y `;` opcional |
+| Errores de acceso o tipo | Lanza excepciones (`IndexError`, `TypeError`, `ValueError`) | Suele continuar con `undefined` o `NaN` |
+| For-each | `for x in lista` | `for (const x of arreglo)` / `arreglo.forEach(...)` |
+| Ejecución | `python archivo.py` | `node archivo.js` |
