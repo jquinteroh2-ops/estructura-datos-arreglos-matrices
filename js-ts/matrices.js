@@ -61,6 +61,19 @@ function recorrerPorColumnas(matriz) {
   }
 }
 
+// 3. Operaciones
+/** Suma todos los elementos de la matriz. */
+function sumarElementos(matriz) {
+  // Forma idiomática equivalente: matriz.flat().reduce((a, b) => a + b, 0)
+  let total = 0;
+  for (const fila of matriz) {
+    for (const valor of fila) {
+      total += valor;
+    }
+  }
+  return total;
+}
+
 function main() {
   console.log("=== MATRICES EN JAVASCRIPT ===");
 
@@ -73,6 +86,9 @@ function main() {
   imprimirTabla(matriz);
   console.log("  b) Por columnas:");
   recorrerPorColumnas(matriz);
+
+  console.log("\n3. Operaciones");
+  console.log(`  a) Suma de todos los elementos: ${sumarElementos(matriz)}`);
 }
 
 main();
