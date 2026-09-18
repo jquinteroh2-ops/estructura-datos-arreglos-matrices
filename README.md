@@ -13,6 +13,15 @@ python python/arreglos.py        # arreglos: busca un valor existente y uno inex
 python python/arreglos.py 42     # arreglos: además busca el valor 42
 ```
 
+### JavaScript (Node.js 18 o superior)
+
+No requiere instalar dependencias.
+
+```bash
+node js-ts/arreglos.js           # arreglos: busca un valor existente y uno inexistente
+node js-ts/arreglos.js 42        # arreglos: además busca el valor 42
+```
+
 ## Estructura de carpetas
 
 ```
