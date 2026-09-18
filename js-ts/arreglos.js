@@ -61,6 +61,25 @@ function imprimirConMetodoForEach(arreglo) {
   });
 }
 
+// 3. Modificación
+// Para modificar se recorre por índice: en un for...of, `valor = 0` solo
+// cambia la variable local del bucle (y con const ni siquiera se permite).
+/** Reemplaza por 0 cada valor impar (modifica el arreglo recibido). */
+function imparesACero(arreglo) {
+  for (let i = 0; i < arreglo.length; i++) {
+    if (arreglo[i] % 2 !== 0) {
+      arreglo[i] = 0;
+    }
+  }
+}
+
+/** Multiplica cada valor por su índice (modifica el arreglo recibido). */
+function multiplicarPorIndice(arreglo) {
+  for (let i = 0; i < arreglo.length; i++) {
+    arreglo[i] *= i;
+  }
+}
+
 function main() {
   console.log("=== ARREGLOS EN JAVASCRIPT ===");
 
@@ -75,6 +94,16 @@ function main() {
   imprimirConForEach(arreglo);
   console.log("  c) Con for-each + índice (método forEach):");
   imprimirConMetodoForEach(arreglo);
+
+  console.log("\n3. Modificación (cada operación sobre una copia del original)");
+  // Los arreglos se pasan por referencia: sin la copia [...] se alteraría `arreglo`.
+  const impares = [...arreglo];
+  imparesACero(impares);
+  console.log(`  Original:                      ${formatear(arreglo)}`);
+  console.log(`  a) Impares cambiados por 0:    ${formatear(impares)}`);
+  const porIndice = [...arreglo];
+  multiplicarPorIndice(porIndice);
+  console.log(`  b) Multiplicado por su índice: ${formatear(porIndice)}`);
 }
 
 main();
