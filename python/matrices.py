@@ -61,6 +61,12 @@ def sumar_elementos(matriz: list[list[int]]) -> int:
     return total
 
 
+def intercambiar_primera_y_ultima_fila(matriz: list[list[int]]) -> None:
+    """Intercambia la primera fila con la última (modifica la matriz recibida)."""
+    # Asignación múltiple (desempaquetado de tuplas): no necesita variable temporal.
+    matriz[0], matriz[-1] = matriz[-1], matriz[0]
+
+
 def main() -> None:
     print("=== MATRICES EN PYTHON ===")
 
@@ -76,6 +82,9 @@ def main() -> None:
 
     print("\n3. Operaciones")
     print(f"  a) Suma de todos los elementos: {sumar_elementos(matriz)}")
+    print("  b) Intercambio de la primera fila con la última:")
+    intercambiar_primera_y_ultima_fila(matriz)
+    imprimir_tabla(matriz)
 
 
 if __name__ == "__main__":
