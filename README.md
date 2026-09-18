@@ -4,6 +4,13 @@ Protocolo colaborativo de la Unidad 1 de la asignatura **Estructura de Datos**.
 Implementación de las operaciones básicas sobre arreglos y matrices en **Python** y **JavaScript**,
 con una comparativa de la sintaxis y el comportamiento de ambos lenguajes.
 
+## Autor
+
+- **Nombre:** Jose Antonio Quintero Herrera
+- **Código:** 7502510055
+- **Programa:** Ingeniería de Software — Universidad de Cartagena
+- **Asignatura:** Estructura de Datos
+
 ## ¿Qué hace el proyecto?
 
 Cada ejercicio está resuelto dos veces, una por lenguaje, con la misma lógica y la misma salida
