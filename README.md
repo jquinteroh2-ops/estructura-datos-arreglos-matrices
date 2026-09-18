@@ -11,6 +11,7 @@ con una comparativa de la sintaxis y el comportamiento de ambos lenguajes.
 ```bash
 python python/arreglos.py        # arreglos: busca un valor existente y uno inexistente
 python python/arreglos.py 42     # arreglos: además busca el valor 42
+python python/matrices.py        # matrices 3x3
 ```
 
 ### JavaScript (Node.js 18 o superior)

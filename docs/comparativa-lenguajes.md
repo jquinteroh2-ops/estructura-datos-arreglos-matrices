@@ -95,3 +95,30 @@ de 10 lo mantiene el programa. La diferencia más importante es el tipado: Pytho
 ejecución ante operaciones entre tipos incompatibles o accesos inválidos, mientras que
 JavaScript intenta convertir tipos o devuelve `undefined`/`NaN`. Eso obliga a validar más
 en JavaScript.
+
+---
+
+## 2. Matrices
+
+### 2.1 Python (`python/matrices.py`)
+
+- **Representación:** no hay un tipo matriz nativo; se usa una **lista de listas**
+  (`list[list[int]]`), donde cada lista interna es una fila. Para cálculo numérico se
+  usa la librería externa NumPy (`numpy.array`), que aquí no se utiliza.
+- **Declaración e inicialización:**
+  ```python
+  matriz = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]      # literal
+  matriz = [[0] * 3 for _ in range(3)]            # 3x3 en ceros, cada fila es una lista nueva
+  ```
+  **Trampa común:** `[[0] * 3] * 3` crea tres referencias a **la misma fila**; al cambiar
+  `matriz[0][0]` cambian las tres filas.
+- **Acceso:** `matriz[i][j]` (fila `i`, columna `j`). Dimensiones: `len(matriz)` filas y
+  `len(matriz[0])` columnas.
+- **Recorrido por filas (tabla):** bucle externo sobre filas y bucle interno sobre
+  columnas. También se puede hacer con for-each anidado (`for fila in matriz: for valor in fila:`).
+- **Recorrido por columnas:** se invierten los bucles: el externo va sobre las columnas
+  `j` y el interno sobre las filas `i`, accediendo a `matriz[i][j]`.
+- **Suma:** con bucles anidados, o en una línea: `sum(sum(fila) for fila in matriz)`.
+- **Intercambio de filas:** la asignación múltiple `matriz[0], matriz[-1] = matriz[-1], matriz[0]`
+  intercambia sin variable temporal. Solo se intercambian las **referencias** a las filas,
+  no se copian sus elementos. `matriz[-1]` accede a la última fila sin calcular el índice.
