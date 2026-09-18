@@ -28,12 +28,29 @@ def crear_matriz(filas: int = FILAS, columnas: int = COLUMNAS) -> list[list[int]
     return matriz
 
 
+# 2. Recorrido
+def imprimir_tabla(matriz: list[list[int]]) -> None:
+    """Imprime la matriz en forma de tabla, recorriéndola fila por fila."""
+    separador = "    +" + "----+" * len(matriz[0])
+    print(separador)
+    for i in range(len(matriz)):              # filas
+        linea = "    |"
+        for j in range(len(matriz[i])):       # columnas de la fila i
+            linea += f" {matriz[i][j]:2d} |"
+        print(linea)
+        print(separador)
+
+
 def main() -> None:
     print("=== MATRICES EN PYTHON ===")
 
     print("\n1. Declaración e inicialización")
     matriz = crear_matriz()
     print(f"  Matriz {len(matriz)}x{len(matriz[0])} con valores del 1 al 9: {matriz}")
+
+    print("\n2. Recorrido")
+    print("  a) En forma de tabla (por filas):")
+    imprimir_tabla(matriz)
 
 
 if __name__ == "__main__":
