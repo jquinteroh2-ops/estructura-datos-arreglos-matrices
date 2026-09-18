@@ -35,12 +35,31 @@ function crearMatriz(filas = FILAS, columnas = COLUMNAS) {
   return matriz;
 }
 
+// 2. Recorrido
+/** Imprime la matriz en forma de tabla, recorriéndola fila por fila. */
+function imprimirTabla(matriz) {
+  const separador = "    +" + "----+".repeat(matriz[0].length);
+  console.log(separador);
+  for (let i = 0; i < matriz.length; i++) {          // filas
+    let linea = "    |";
+    for (let j = 0; j < matriz[i].length; j++) {     // columnas de la fila i
+      linea += ` ${String(matriz[i][j]).padStart(2)} |`;
+    }
+    console.log(linea);
+    console.log(separador);
+  }
+}
+
 function main() {
   console.log("=== MATRICES EN JAVASCRIPT ===");
 
   console.log("\n1. Declaración e inicialización");
   const matriz = crearMatriz();
   console.log(`  Matriz ${matriz.length}x${matriz[0].length} con valores del 1 al 9: ${formatear(matriz)}`);
+
+  console.log("\n2. Recorrido");
+  console.log("  a) En forma de tabla (por filas):");
+  imprimirTabla(matriz);
 }
 
 main();
