@@ -37,12 +37,44 @@ function crearArreglo(tamano = TAMANO) {
   return arreglo;
 }
 
+// 2. Recorrido e impresión
+/** Recorre el arreglo por índice con el for clásico. */
+function imprimirConForClasico(arreglo) {
+  for (let i = 0; i < arreglo.length; i++) {
+    console.log(`    arreglo[${i}] = ${arreglo[i]}`);
+  }
+}
+
+/** Recorre el arreglo elemento por elemento con for...of (el for-each de JS). */
+function imprimirConForEach(arreglo) {
+  process.stdout.write("    ");
+  for (const valor of arreglo) {
+    process.stdout.write(`${valor} `);
+  }
+  console.log();
+}
+
+/** Método forEach: recibe una función que se llama con (valor, indice). */
+function imprimirConMetodoForEach(arreglo) {
+  arreglo.forEach((valor, indice) => {
+    console.log(`    [${indice}] -> ${valor}`);
+  });
+}
+
 function main() {
   console.log("=== ARREGLOS EN JAVASCRIPT ===");
 
   console.log("\n1. Declaración y creación");
   const arreglo = crearArreglo();
   console.log(`  Arreglo de ${arreglo.length} enteros aleatorios: ${formatear(arreglo)}`);
+
+  console.log("\n2. Recorrido e impresión");
+  console.log("  a) Con for clásico (por índice):");
+  imprimirConForClasico(arreglo);
+  console.log("  b) Con for-each (for...of, por elemento):");
+  imprimirConForEach(arreglo);
+  console.log("  c) Con for-each + índice (método forEach):");
+  imprimirConMetodoForEach(arreglo);
 }
 
 main();
