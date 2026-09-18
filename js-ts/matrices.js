@@ -74,6 +74,13 @@ function sumarElementos(matriz) {
   return total;
 }
 
+/** Intercambia la primera fila con la última (modifica la matriz recibida). */
+function intercambiarPrimeraYUltimaFila(matriz) {
+  const ultima = matriz.length - 1;
+  // Asignación por desestructuración: no necesita variable temporal.
+  [matriz[0], matriz[ultima]] = [matriz[ultima], matriz[0]];
+}
+
 function main() {
   console.log("=== MATRICES EN JAVASCRIPT ===");
 
@@ -89,6 +96,9 @@ function main() {
 
   console.log("\n3. Operaciones");
   console.log(`  a) Suma de todos los elementos: ${sumarElementos(matriz)}`);
+  console.log("  b) Intercambio de la primera fila con la última:");
+  intercambiarPrimeraYUltimaFila(matriz);
+  imprimirTabla(matriz);
 }
 
 main();
