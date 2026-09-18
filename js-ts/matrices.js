@@ -50,6 +50,17 @@ function imprimirTabla(matriz) {
   }
 }
 
+/** Recorre la matriz columna por columna: el bucle externo va sobre columnas. */
+function recorrerPorColumnas(matriz) {
+  for (let j = 0; j < matriz[0].length; j++) {       // columnas
+    let linea = `    Columna ${j}:`;
+    for (let i = 0; i < matriz.length; i++) {        // filas de la columna j
+      linea += ` ${matriz[i][j]}`;
+    }
+    console.log(linea);
+  }
+}
+
 function main() {
   console.log("=== MATRICES EN JAVASCRIPT ===");
 
@@ -60,6 +71,8 @@ function main() {
   console.log("\n2. Recorrido");
   console.log("  a) En forma de tabla (por filas):");
   imprimirTabla(matriz);
+  console.log("  b) Por columnas:");
+  recorrerPorColumnas(matriz);
 }
 
 main();
