@@ -6,7 +6,8 @@
  * 10 enteros y se respeta ese tamaño en todas las operaciones.
  *
  * Ejecución:
- *   node js-ts/arreglos.js
+ *   node js-ts/arreglos.js        # busca un valor existente y uno inexistente
+ *   node js-ts/arreglos.js 42     # además busca el valor 42
  */
 
 const TAMANO = 10;
@@ -80,6 +81,26 @@ function multiplicarPorIndice(arreglo) {
   }
 }
 
+// 4. Búsqueda
+/** Devuelve el índice de la primera aparición de `objetivo`, o -1 si no está. */
+function busquedaLineal(arreglo, objetivo) {
+  for (let i = 0; i < arreglo.length; i++) {
+    if (arreglo[i] === objetivo) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+function mostrarBusqueda(arreglo, objetivo) {
+  const indice = busquedaLineal(arreglo, objetivo);
+  if (indice !== -1) {
+    console.log(`  El valor ${objetivo} está en la posición ${indice}.`);
+  } else {
+    console.log(`  El valor ${objetivo} no se encuentra en el arreglo.`);
+  }
+}
+
 function main() {
   console.log("=== ARREGLOS EN JAVASCRIPT ===");
 
@@ -104,6 +125,23 @@ function main() {
   const porIndice = [...arreglo];
   multiplicarPorIndice(porIndice);
   console.log(`  b) Multiplicado por su índice: ${formatear(porIndice)}`);
+
+  console.log(`\n4. Búsqueda lineal en ${formatear(arreglo)}`);
+  // Un valor que sí existe (tomado del arreglo) y uno que no (fuera del rango).
+  mostrarBusqueda(arreglo, arreglo[enteroAleatorio(0, arreglo.length - 1)]);
+  mostrarBusqueda(arreglo, VALOR_MINIMO - 1);
+  // Valor dado por el usuario: node js-ts/arreglos.js 42
+  const argumento = process.argv[2];
+  if (argumento !== undefined) {
+    // Number() convierte el texto; a diferencia de int() en Python no lanza
+    // error: devuelve NaN si el texto no es un número.
+    const objetivo = Number(argumento);
+    if (argumento.trim() !== "" && Number.isInteger(objetivo)) {
+      mostrarBusqueda(arreglo, objetivo);
+    } else {
+      console.log(`  '${argumento}' no es un número entero válido.`);
+    }
+  }
 }
 
 main();
